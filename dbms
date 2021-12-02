@@ -95,3 +95,59 @@ int main()
          if(strcmp(e.last_name, xlast_name)==0)
          {
            cout<<"Enter new first name : ";
+           cin>>e.first_name;
+           cout<<"Enter new last name : ";
+           cin>>e.last_name;
+           cout<<"Enter new course : ";
+           cin>>e.course;
+           cout<<"Enter the new section : ";
+           cin>>e.section;
+           fseek(fp, - recsize, seek_CUR);
+           fwrite(&e,recsize,1,fp);
+           break;
+         }
+         else
+           cout<<"record not found ";
+       }
+       cout<<"\n Modify Another Record (Y/N) ";
+       fflush(stdin);
+       another = getchar();
+      
+     }
+     break;
+     
+     case '4':
+        system("cls");
+        another = 'y';
+        while(another == 'y' || another == 'y')
+        {
+          cout<<"\n Enter the last name of the student to delete : ";
+          cin>>xlast_name;
+          ft= fopen("temp.dat", "wb");
+          rewind(fp);
+          while(fread(&e,recsize,1,fp)==1)
+           if (strcmp(e.last_name, xlast_name)!=0)
+           {
+             fwrite(&e,recsize,1,ft);
+           }
+           fclose(fp);
+           fclose(ft);
+           remove("users.txt");
+           rename("temp.dat","users,txt");
+           fp=fopen("users.txt","rb+");
+           cout<<"\n Delete another record (Y/N) ";
+           fflush(stdin);
+           another = getchar();
+        }
+        break;
+        case 's':
+        fclose(fp);
+        cout<<"\n\n";
+        cout<<"\t\t THANK YOU FOR USING THIS SOFTWARE";
+        cout<<"\n\n";
+        exit(0);
+    }
+        }
+        systems("pause");
+        return 0;
+}
