@@ -9,7 +9,7 @@ int main()
     return 0;
 }
 
-otuput:
+output:
     
     Size of char   :  1 bytes
     Size of int    :  4 bytes
